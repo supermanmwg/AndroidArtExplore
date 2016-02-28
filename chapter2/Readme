@@ -1,0 +1,3 @@
+ContentProvider:
+(1)一定要注意在AndroidMainfest.xml中的provider的authorities， authorities的值是 包名＋ “.provider”
+(2)SQLiteOpenHelper的构造函数中的version 一定要大于等于1
