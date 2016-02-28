@@ -1,3 +1,7 @@
 ContentProvider:
 (1)一定要注意在AndroidMainfest.xml中的provider的authorities， authorities的值是 包名＋ “.provider”
 (2)SQLiteOpenHelper的构造函数中的version 一定要大于等于1
+
+Messenger
+(1) 如果Service是声明在另一个进程中，在Android Studio看打印的时候要切换进程，不然不会出现
+(2) 实现客户端与服务器端双向通行
