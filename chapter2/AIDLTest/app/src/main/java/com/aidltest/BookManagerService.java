@@ -61,6 +61,10 @@ public class BookManagerService extends Service {
         super.onCreate();
         mBookList.add(new Book(1, "Android"));
         mBookList.add(new Book(2, "Ios"));
+        Intent intent = new Intent(BookManagerService.this, MainActivity.class);
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
         Log.d(TAG, "BookManagerService is starting");
         new Thread(new ServiceWorker()).start();
     }
@@ -108,4 +112,8 @@ public class BookManagerService extends Service {
         }
     }
 
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        return START_STICKY;
+    }
 }

@@ -23,9 +23,12 @@ public class MainActivity extends AppCompatActivity {
     private IBookManager mRemoteBookManager;
 
     @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
+    protected void onNewIntent(Intent it) {
+        super.onNewIntent(it);
         Log.d(TAG, "MainActivity is restarted");
+        Intent intent = new Intent(this, BookManagerService.class);
+        startService(intent);
+        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
     private Handler mHandler = new Handler() {
@@ -75,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "MainActivity is onCreated");
         setContentView(R.layout.activity_main);
         Intent intent = new Intent(this, BookManagerService.class);
+        startService(intent);
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
@@ -91,5 +95,9 @@ public class MainActivity extends AppCompatActivity {
 
         unbindService(mConnection);
         super.onDestroy();
+    }
+
+    static {
+        Log.d(TAG, "MainActivity is static");
     }
 }
