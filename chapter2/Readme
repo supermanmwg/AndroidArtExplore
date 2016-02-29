@@ -1,10 +1,30 @@
-ContentProvider:
-(1)一定要注意在AndroidMainfest.xml中的provider的authorities， authorities的值是 包名＋ “.provider”
-(2)SQLiteOpenHelper的构造函数中的version 一定要大于等于1
+1 ContentProvider:
+ (1)一定要注意在AndroidMainfest.xml中的provider的authorities， authorities的值是 包名＋ “.provider”
+ (2)SQLiteOpenHelper的构造函数中的version 一定要大于等于1
 
-Messenger
-(1) 如果Service是声明在另一个进程中，在Android Studio看打印的时候要切换进程，不然不会出现
-(2) 实现客户端与服务器端双向通行
+2 Messenger
+ (1) 如果Service是声明在另一个进程中，在Android Studio看打印的时候要切换进程，不然不会出现
+ (2) 实现客户端与服务器端双向通行
 
-MutipleProcess
-运行在同一个进程中的组件是属于同一个虚拟机和同一个Application的，同理，运行在不同的进程中的组件是属于两个不同的虚拟机和Application;
+3 MutipleProcess
+ (1)运行在同一个进程中的组件是属于同一个虚拟机和同一个Application的，同理，运行在不同的进程中的组件是属于两个不同的虚拟机和Application;
+
+3 SerialParcelable
+ （1）Serializable中需手动指定SerialVerisonUID,若果指定，则通过SerialVerisonUID声称Hash值；若 不指定则根据当前类的结构生成Hash值；
+ （2）静态成员变量属于类不属于对象，不会参与序列化的过程； 用transient关键字标记的成员变量不参与序列化过程。
+ （3）学习了创建文件夹和文件：
+	File filedir ＝ new File（path）；
+	if(!filedir.exist()) {
+	   filedir.mkdir();
+	}  //创建文件夹
+
+	File file ＝ new File（path ＋ fileName）;
+	try {
+	   if(!file.exist()) {
+		file.createNewFile();
+	   }
+	} catch(IOException e) {
+		……
+	}  //创建文件
+
+（4）Parcelable在AIDL中实现，这个程序就不写了
