@@ -9,10 +9,12 @@ import android.os.Parcelable;
 public class Book implements Parcelable {
     public int bookId;
     public String bookName;
+    public User user;
 
-    public Book(int bookId, String bookName) {
+    public Book(int bookId, String bookName, User user) {
         this.bookId = bookId;
         this.bookName = bookName;
+        this.user = user;
     }
 
     @Override
@@ -24,6 +26,7 @@ public class Book implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(bookId);
         dest.writeString(bookName);
+        dest.writeParcelable(user, 0);
     }
 
     public static final Parcelable.Creator<Book> CREATOR = new Parcelable.Creator<Book>() {
@@ -41,10 +44,11 @@ public class Book implements Parcelable {
     private Book(Parcel in) {
         bookId = in.readInt();
         bookName = in.readString();
+        user = in.readParcelable(Thread.currentThread().getContextClassLoader());
     }
 
     @Override
     public String toString() {
-        return "book id is " + bookId + "book name is " + bookName;
+        return "book id is " + bookId + ", book name is " + bookName + ", " + user.toString();
     }
 }

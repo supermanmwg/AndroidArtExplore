@@ -59,8 +59,8 @@ public class BookManagerService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        mBookList.add(new Book(1, "Android"));
-        mBookList.add(new Book(2, "Ios"));
+        mBookList.add(new Book(1, "Android", new User(12, "mwg", true)));
+        mBookList.add(new Book(2, "Ios",new User(12, "mwg", true)));
         Intent intent = new Intent(BookManagerService.this, MainActivity.class);
         intent.setAction(Intent.ACTION_VIEW);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -102,7 +102,7 @@ public class BookManagerService extends Service {
                     e.printStackTrace();
                 }
                 int bookId = mBookList.size() + 1;
-                Book newBook = new Book(bookId, "new book#" + bookId);
+                Book newBook = new Book(bookId, "new book#" + bookId, new User(12, "mwg", true));
                 try {
                     onNewBookArrived(newBook);
                 } catch (RemoteException e) {
