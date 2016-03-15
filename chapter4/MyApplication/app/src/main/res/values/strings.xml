@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">RemoteView</string>
+
+    <string name="go_to_demo2">go to demo 2</string>
+</resources>
